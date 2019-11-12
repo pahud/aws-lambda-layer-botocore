@@ -8,7 +8,7 @@
 
 # AWS Lambda Layer for botocore with Python3
 
-This repo builds the latest `botocore` with python3 into AWS Lambda Layer and publishes to [AWS SAR](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:903779448426:applications~lambda-layer-botocore)
+This repo builds the latest `botocore` with python3 into AWS Lambda Layer and publishes to [AWS SAR](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:903779448426:applications~lambda-layer-botocore). We automate the daily build the publish to SAR with CodeBuild.
 
 
 ## CDK Sample
