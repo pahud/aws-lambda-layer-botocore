@@ -9,3 +9,52 @@
 # AWS Lambda Layer for botocore with Python3
 
 This repo builds the latest `botocore` with python3 into AWS Lambda Layer and publishes to [AWS SAR](https://serverlessrepo.aws.amazon.com/applications/arn:aws:serverlessrepo:us-east-1:903779448426:applications~lambda-layer-botocore)
+
+
+## CDK Sample
+
+```js
+import * as cdk from '@aws-cdk/core';
+import * as sam from '@aws-cdk/aws-sam';
+import * as lambda from '@aws-cdk/aws-lambda';
+import * as apigateway from '@aws-cdk/aws-apigateway';
+
+export class AppStack extends cdk.Stack {
+    constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+        super(scope, id, props);
+    
+    const samApp = new sam.CfnApplication(this, 'SamLayer', {
+      location: {
+        applicationId: 'arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-botocore',
+        semanticVersion: '1.13.15'
+      }
+    })
+
+    const layerVersionArn = samApp.getAtt('Outputs.LayerVersionArn').toString();
+
+    const handler = new lambda.Function(this, 'Func', {
+      code: lambda.AssetCode.fromInline(`
+import botocore, json
+def handler(event, context):
+  return {
+    'statusCode': 200,
+    'body': json.dumps(botocore.__version__)
+  }`),
+      runtime: lambda.Runtime.PYTHON_3_7,
+      handler: 'index.handler',
+      layers: [
+        lambda.LayerVersion.fromLayerVersionArn(this, 'Layer', layerVersionArn)
+      ]
+    })
+
+    new apigateway.LambdaRestApi(this, 'Api', {
+      handler
+    })
+
+    new cdk.CfnOutput(this, 'LayerVersionArn', {
+      value: layerVersionArn
+    })
+
+    }
+}
+```
