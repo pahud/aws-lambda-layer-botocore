@@ -1,5 +1,9 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
+Parameters:
+  LayerName:
+    Type: String
+
 Metadata:
   AWS::ServerlessRepo::Application:
     Name: lambda-layer-botocore
