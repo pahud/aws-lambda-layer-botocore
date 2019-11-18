@@ -28,7 +28,7 @@ export class AppStack extends cdk.Stack {
     const samApp = new sam.CfnApplication(this, 'SamLayer', {
       location: {
         applicationId: 'arn:aws:serverlessrepo:us-east-1:903779448426:applications/lambda-layer-botocore',
-        semanticVersion: '1.13.15'
+        semanticVersion: '1.13.19'
       }
     })
 
