@@ -24,7 +24,7 @@ Resources:
   LambdaLayer:
     Type: AWS::Serverless::LayerVersion
     Properties:
-      LayerName: !Sub "${AWS::StackName}"
+      LayerName: !Ref LayerName
       ContentUri: ./layer.zip
       CompatibleRuntimes: 
         - python3.7
