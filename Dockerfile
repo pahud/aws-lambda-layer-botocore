@@ -1,11 +1,7 @@
-FROM alpine:latest
+FROM lambci/lambda:build-python3.8
 
-RUN \
-	apk -Uuv add python3 bash zip && \
-	pip3 install botocore
+WORKDIR /root
 
-RUN mkdir -p /root/python/lib/python3.7/site-packages && \
-cp -a /usr/lib/python3.7/site-packages/botocore* /root/python/lib/python3.7/site-packages && \
-cd /root; zip -r layer.zip python && \
+RUN pip3 install -t /root/to_zip/python botocore && \
+cd /root/to_zip; zip -9yr /root/layer.zip . && \
 python3 -c "import botocore; print(botocore.__version__)" > /root/VERSION
-
