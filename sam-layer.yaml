@@ -7,7 +7,7 @@ Parameters:
 Metadata:
   AWS::ServerlessRepo::Application:
     Name: lambda-layer-botocore
-    Description: "AWS Lambda Layer for botocore with python3.7"
+    Description: "AWS Lambda Layer for botocore with python3.8"
     Author: Pahud Hsieh
     SpdxLicenseId: Apache-2.0
     LicenseUrl: LICENSE
@@ -18,7 +18,7 @@ Metadata:
     SourceCodeUrl: https://github.com/pahud
 
 Transform: AWS::Serverless-2016-10-31
-Description: AWS Lambda Layer for botocore with python3.7
+Description: AWS Lambda Layer for botocore with python3.8
 
 Resources:
   LambdaLayer:
@@ -28,6 +28,7 @@ Resources:
       ContentUri: ./layer.zip
       CompatibleRuntimes: 
         - python3.7
+        - python3.8
       LicenseInfo: 'Available under the MIT-0 license.'
       RetentionPolicy: Retain
 
