@@ -13,7 +13,7 @@ This repo builds the latest `botocore` with python3 into AWS Lambda Layer and pu
 
 ## CDK Sample
 
-or view it from [play-with-cdk](https://play-with-cdk.com?s=538e3d7fdd1edc1a8e8421dcdb70bd22)
+or view it from [play-with-cdk](https://play-with-cdk.com?s=fe4baddf43edc293e3b81fa8bd2b6766)
 
 ```js
 import * as cdk from '@aws-cdk/core';
