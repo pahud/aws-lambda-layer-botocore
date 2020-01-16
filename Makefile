@@ -124,6 +124,10 @@ add-layer-version-permission:
 publish-new-version-to-sar:
 	@LAMBDA_REGION=us-east-1 make clean build sam-layer-package sam-layer-publish
 
+.PHONY: publish-new-version-to-sar-cn
+publish-new-version-to-sar-cn:
+	@LAMBDA_REGION=cn-north-1 make clean build sam-layer-package sam-layer-publish
+
 all: build layer-upload layer-publish
 	
 clean:
