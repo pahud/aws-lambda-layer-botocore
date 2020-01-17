@@ -1,4 +1,6 @@
-FROM lambci/lambda:build-python3.8
+#FROM lambci/lambda:build-python3.8
+ARG DOCKER_MIRROR=''
+FROM ${DOCKER_MIRROR}lambci/lambda:build-python3.8
 
 WORKDIR /root
 
